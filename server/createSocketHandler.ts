@@ -123,11 +123,28 @@ export function createSocketHandler(server: Server) {
       );
     }
 
+    const onAudio = (roomId: string, message: Blob) => {
+      server.to(getRoomName(roomId)).emit("audio", {
+        message,
+        sender: socket.id,
+        time: Date.now(),
+      } as TextIface);
+      console.log(
+        "somebody said",
+        message,
+        "in",
+        roomId,
+        "sent from",
+        socket.id
+      );
+    };
+
     socket.on("disconnecting", onDisconnecting);
     socket.on("hello", onHello);
     socket.on("hello-ack", onHelloAck);
     socket.on("text", onText);
     socket.on("logs", onLogs);
     socket.on("bye", onBye);
+    socket.on("audio", onAudio);
   };
 }

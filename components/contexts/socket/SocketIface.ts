@@ -11,4 +11,6 @@ export interface SocketIface {
   join(roomId: string): void;
   leave(): void;
   text(message: string): void;
+  recordAudio(): void;
+  audio(message: Blob): void;
 }

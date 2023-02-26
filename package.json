@@ -35,9 +35,6 @@
   },
   "homepage": "https://github.com/arch-inc/nextjs-socketio-chat-example#readme",
   "description": "A simple chat using Socket.io and Next.js, written in pure TypeScript",
-  "engines": {
-    "node": "12.x"
-  },
   "devDependencies": {
     "@types/react": "^16.9.44",
     "@types/react-dom": "^16.9.8",

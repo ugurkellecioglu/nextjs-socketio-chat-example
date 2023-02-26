@@ -168,14 +168,23 @@ const SocketProvider: FC = ({ children }) => {
       setTextLogs(merged);
     }
 
+    function audio(data: TextIface) {
+      console.log("audiooo", data);
+      const logs = textLogs.slice();
+      logs.push(data);
+      setTextLogs(logs);
+    }
+
     socket.on("text", text);
     socket.on("logs", logs);
     socket.on("logs-ack", logsAck);
+    socket.on("audio", audio);
 
     return () => {
       socket.off("text", text);
       socket.off("logs", logs);
       socket.off("logs-ack", logsAck);
+      socket.off("audio", audio);
     };
   }, [socket, roomId, textLogs]);
 
@@ -212,6 +221,16 @@ const SocketProvider: FC = ({ children }) => {
     [socket, roomId]
   );
 
+  const audio = useCallback(
+    (blob: Blob) => {
+      if (!socket || !roomId) {
+        return;
+      }
+      socket.emit("audio", roomId, blob);
+    },
+    [socket, roomId]
+  );
+
   const data: SocketIface = Object.freeze({
     roomId,
     socket,
@@ -220,6 +239,7 @@ const SocketProvider: FC = ({ children }) => {
     join,
     leave,
     text,
+    audio,
   });
 
   return (
