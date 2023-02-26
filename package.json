@@ -49,6 +49,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "@types/dom-mediacapture-record": "^1.0.14",
     "next": "^9.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

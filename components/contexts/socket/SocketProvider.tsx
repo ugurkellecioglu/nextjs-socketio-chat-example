@@ -231,6 +231,8 @@ const SocketProvider: FC = ({ children }) => {
     [socket, roomId]
   );
 
+  const recordAudio = useCallback(() => {}, []);
+
   const data: SocketIface = Object.freeze({
     roomId,
     socket,
@@ -240,6 +242,7 @@ const SocketProvider: FC = ({ children }) => {
     leave,
     text,
     audio,
+    recordAudio,
   });
 
   return (

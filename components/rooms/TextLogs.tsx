@@ -42,7 +42,9 @@ export const TextLogs: FC = () => {
           socket.textLogs.map((t, i) => (
             <li key={i}>
               {typeof t.message !== "string" ? (
-                <a onClick={() => createALinkFromBlob(t.message)}>download</a>
+                <a onClick={() => createALinkFromBlob(t.message as Blob)}>
+                  download
+                </a>
               ) : (
                 t.message
               )}{" "}
